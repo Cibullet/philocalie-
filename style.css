@@ -1,0 +1,73 @@
+.bob {
+    transition: 1s;         /* sets all transition times to 1 second */
+    padding-left: 0%;        /* adding space on the left side */
+}
+.bob:hover{
+    rotate: -1080deg;        /* makes bob spin */
+    scale: 2;       /* makes bob bigger as it spins */
+}
+.body {
+    background-color:darkblue 
+}
+
+
+
+/* SLIDER */
+
+.container {
+    width: 100%;        /* full width of the viewport */
+    margin : 0;      /* removes default margin */
+    padding: 2rem 0;      /* keeps vertical padding and removes horizontal padding */
+}
+
+.slider-wrapper {
+    position: relative;      /* relative to the parent container */
+    margin: 0;      /* removes auto centering */
+}
+
+.slider {
+    animation: slide 2s infinite;       /* animation name, duration, infinite loop */
+    max-height: 500px;
+    width: 100vw;
+    display: flex;      /* using flexbox */
+    aspect-ratio: 16/9;      /* size */
+    overflow-x: hidden;        /* hide the images outside of the container */
+    scroll-snap-type: x mandatory;       /* enable snap scrolling */
+    scroll-behavior: smooth;         /* smooth animation */
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);        /* adding a shadow : x offset, y offset, blur, spread, color : hue, saturation, lightness, alpha/opacity */
+    border-radius: 0.5rem;       /* rounded corners */
+}
+
+.slider img {
+    width: 100%;        /* full width of the parent container */
+    height: 100%;       /* full height of the parent container */
+    flex: 1 0 100%;         /* 1 : flex grow : every image has an equal size. 0 : flex strength : every image will retain the width it needs and not rob its content. 100% : flex basis : every image will have an initial size of 100% so it will take the entire parent container. */
+    scroll-snap-align: start;       /* Now the image will snap or stop at the start of the image element in the parent container. */
+    object-fit: cover;         /* cover the entire image without stretching it (will crop it out) */
+}
+
+.slider-nav {
+    display:flex;         /* using flexbox */
+    column-gap: 1rem;       /* space between the siblings */
+    position: absolute;       /* absolute to the parent container, is linked to the wrapper */
+    bottom : 1.25rem;       /* distance from the bottom of the parent container */
+    left: 50%;       /* center the nav part 1 */
+    transform: translateX(-50%);      /* center the nav part 2 (will move the navigation to the left by half of its width which will automatically center it) */
+    z-index: 1;         /* making sure the nav sits on top of the slider */
+}
+
+.slider-nav a {
+    width : 0.5rem;       /* width of the nav element */
+    height: 0.5rem;      /* height of the nav element */
+    border-radius: 50%;       /* making it round */
+    background-color: #000;       /* black color */
+    opacity: 0.5;       /* making it a bit transparent */
+    transition: opacity ease 250ms;       /* targets the opacity property, ease is the timing function, 250ms is the duration of the transition. this is important because we will change the opacity when the user hovers over the button. */
+}
+
+.slider-nav a:hover {
+    opacity: 1;      /* when the user hovers over the button, the opacity will change to 1 (with the aforementionned transition) */
+}
+
+
+/* SLIDER */

@@ -1,5 +1,46 @@
-<?php
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <?php
+echo "titre"
+    ?>
+    <title>Bob</title>
+</head>
 
-echo "patopato pato papa"
 
-  ?>
+<body>
+
+
+    <section>
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <img id="slide-1" src="danse1.png" alt="image de danse">
+                    <img id="slide-2" src="interventions1.png" alt="image d'intervention">
+                    <img id="slide-3" src="philo1.png" alt="image de philo">
+                </div>
+                <div class="slider-nav">
+                    <a href="#slide-1"></a>
+                    <a href="#slide-2"></a>
+                    <a href="#slide-3"></a>
+                </div>
+            </div>
+    </section>
+    <div class="container">
+        <h1>B</h1>
+        <img class="bob" src="2.png" alt="image de bob"/>
+        <h1>B</h1>
+    </div>
+
+
+    <audio controls autoplay loop>
+        <source src="Factory A.mp3" id="nubbytheme" type = audio/mpeg>
+    </audio>
+    <label for="nubbytheme"> Nubby's Theme </label> <br>
+</body>
+</html>
+
+
