@@ -58,8 +58,8 @@ html, body {
 }
 
 .slider-nav a {
-    width : 1rem;       /* width of the nav element */
-    height: 1rem;      /* height of the nav element */
+    width : 0.6vw;       /* width of the nav element */
+    height: 0.6vw;      /* height of the nav element */
     border-radius: 50%;       /* making it round */
     background-color: #000;       /* black color */
     opacity: 0.5;       /* making it a bit transparent */
