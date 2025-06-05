@@ -42,6 +42,30 @@
         <h1>B</h1>
     </div>
 
+    <script>
+        const navDots = document.querySelectorAll('.slider-nav a');
+        let current = 0;
+
+        function setActiveDot(index) {
+            navDots.forEach(dot => dot.classList.remove('active'));
+            navDots[index].classList.add('active');
+        }
+        
+        setActiveDot(current);
+
+        setInterval(() => {
+            current = (current + 1) % navDots.length;
+            navDots[current].click();
+        }, 4000);
+
+        navDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                current = idx;
+                setActiveDot(current);
+            }); 
+        });
+    </script>
+
 
     <audio controls autoplay loop>
         <source src="other/Factory A.mp3" id="nubbytheme" type = audio/mpeg>
