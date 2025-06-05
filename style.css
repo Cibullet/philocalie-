@@ -70,7 +70,10 @@ html, body {
     opacity: 1;      /* when the user hovers over the button, the opacity will change to 1 (with the aforementionned transition) */
 }
 
-
+.slider-nav a.active {
+    opacity: 1;
+    background-color: #000000; /* or any color you want for highlight */
+}
 /* SLIDER */
 
 
