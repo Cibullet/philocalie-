@@ -85,7 +85,7 @@ html, body {
 
 .navbar img {
     width: 8vw ;
-    min-width: 120px;
+    min-width: 1vw;
     max-width: 200px;
     height: auto;
     margin-left: 2rem;
