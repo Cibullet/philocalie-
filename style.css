@@ -6,8 +6,10 @@
     rotate: -1080deg;        /* makes bob spin */
     scale: 2;       /* makes bob bigger as it spins */
 }
-.body {
-    background-color:darkblue 
+html, body {
+    background-color:#ccd8e9 ;
+    margin : 0;     /* removes default margin */
+    padding: 0;      /* removes default padding */
 }
 
 
@@ -15,14 +17,13 @@
 /* SLIDER */
 
 .container {
-    width: 100%;        /* full width of the viewport */
     margin : 0;      /* removes default margin */
     padding: 2rem 0;      /* keeps vertical padding and removes horizontal padding */
 }
 
 .slider-wrapper {
     position: relative;      /* relative to the parent container */
-    margin: 0;      /* removes auto centering */
+    margin: 0;      /* removes auto centering. Right now does nothing since margin has not been defined elsewhere. */
 }
 
 .slider {
@@ -57,8 +58,8 @@
 }
 
 .slider-nav a {
-    width : 0.5rem;       /* width of the nav element */
-    height: 0.5rem;      /* height of the nav element */
+    width : 1rem;       /* width of the nav element */
+    height: 1rem;      /* height of the nav element */
     border-radius: 50%;       /* making it round */
     background-color: #000;       /* black color */
     opacity: 0.5;       /* making it a bit transparent */
@@ -71,3 +72,42 @@
 
 
 /* SLIDER */
+
+
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    background: #222;
+    padding: 2rem 0;
+}
+
+.navbar img {
+    width: 8vw ;
+    min-width: 120px;
+    max-width: 200px;
+    height: auto;
+    margin-left: 2rem;
+}
+
+.navbar ul {
+    margin-left: auto; /* pushes the list to the right except it doesn't */
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+    padding: 0 3rem 0 0;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5vw;
+    transition: color 0.2s;
+}
+.navbar a:hover {
+    color: #fff6c0;
+}
+
+/* NAVBAR */
