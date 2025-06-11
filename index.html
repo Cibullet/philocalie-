@@ -1,78 +1,118 @@
-<html>
+<!DOCTYPE html>
+<!-- head and title -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
-    <title>Bob</title>
+    <title>Philocalie</title>
 </head>
+
+<body>
+
 <!-- navbar -->
 <nav class="navbar">
-    <img src="images/logo.png" alt="logo philocalie">
+<a href="index.php"> <img src="images/logo.png" alt="logo philocalie"> </a>
     <ul>
         <li><a href="index.php">Accueil</a></li>
-        <li><a href="philo.php">Philo</a></li>
-        <li><a href="interviews.php">Interviews</a></li>
-        <li><a href="danse.php">danse</a></li>
+        <li><a href="actualites.php">Atualités</a></li>
+
+        <li class="dropdown">
+        <a href="philo.php" class="dropbtn">Publics spécifiques</a>
+        <div class="content">
+                <a href="seniors.php">Seniors</a>
+                <a href="handicap.php">Personnes en situation de handicap</a>
+                <a href="entreprises.php">Entreprises</a>
+        </div>
+        </li>
+
+        <li class="dropdown">
+        <a href="philo.php" class="dropbtn">Interventions pédagogiques</a>
+        <div class="content">
+                <a href="philo.php">Ateliers</a>
+                <a href="conferences.php">Conférences</a>
+        </div>
+        </li>
+
+        <li><a href="temoignages.php">Témoignages</a></li>
+        <li><a href="apropos.php">Qui sommes-nous ?</a></li>
         <li><a href="contact.php">Contact</a></li>
     </ul>
 </nav>
-
-<body>
 
 <!-- slider -->
     <section>
             <div class="slider-wrapper">
                 <div class="slider">
                     <img id="slide-1" src="images/danse1.png" alt="image de danse">
-                    <img id="slide-2" src="images/interventions1.png" alt="image d'intervention">
+                    <img id="slide-2" src="images/actus1.png" alt="image d'intervention">
                     <img id="slide-3" src="images/philo1.png" alt="image de philo">
+                    <img id="slide-4" src="images/temoignage1.png" alt="image de témoignage">
                 </div>
                 <div class="slider-nav">
-                    <a href="#slide-1"></a>
-                    <a href="#slide-2"></a>
-                    <a href="#slide-3"></a>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                    <a></a>
                 </div>
             </div>
     </section>
-    <div class="container">
-        <h1>B</h1>
-        <img class="bob" src="images/2.png" alt="image de bob"/>
-        <h1>B</h1>
-    </div>
 
-    <!-- highlights active dot + changes the image on the slider automatically every 4 seconds -->
+<!-- highlights active dot + changes the image on the slider automatically every 5 seconds -->
     <script>
+        const slides = document.querySelectorAll('.slider img');
         const navDots = document.querySelectorAll('.slider-nav a');
+        const slider = document.querySelector('.slider');
         let current = 0;
+        let intervalId;
 
-        function setActiveDot(index) {
-            navDots.forEach(dot => dot.classList.remove('active'));
-            navDots[index].classList.add('active');
+        function showSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}vw)`;
+            navDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
-        
-        setActiveDot(current);
 
-        setInterval(() => {
-            current = (current + 1) % navDots.length;
-            navDots[current].click();
-        }, 4000);
+        function startSliderInterval() {
+            intervalId = setInterval(() => {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }, 5000);
+        }
 
         navDots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
                 current = idx;
-                setActiveDot(current);
-            }); 
+                showSlide(current);
+                clearInterval(intervalId); // stop the old timer
+                startSliderInterval();     // restart the timer
+            });
         });
+
+        function showSlide(index) { // controls the color of the dots based on the current slide
+            slider.style.transform = `translateX(-${index * 100}vw)`;
+            navDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            const sliderNav = document.querySelector('.slider-nav');    
+            const darkSlides = [1,3]; // adjust slide number for dark slides
+            if (darkSlides.includes(index)) {
+                sliderNav.classList.add('dots-white');
+            } else {
+                sliderNav.classList.remove('dots-white');
+            }
+        }
+
+        showSlide(current);
+        startSliderInterval();
     </script>
 
-<!-- places a playable audio file -->
-    <audio controls autoplay loop>
-        <source src="other/Factory A.mp3" id="nubbytheme" type = audio/mpeg>
-    </audio>
-    <label for="nubbytheme"> Nubby's Theme </label> <br>
-</body>
+<footer class="footer">
+    <div class="footer-legal">
+        &copy; 2025 Philocalie. Tous droits réservés.
+    </div>
+</footer>
+
 </html>
-
-
