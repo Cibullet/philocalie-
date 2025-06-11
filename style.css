@@ -1,21 +1,36 @@
-.bob {
-    transition: 1s;         /* sets all transition times to 1 second */
-    padding-left: 0%;        /* adding space on the left side */
-}
-.bob:hover{
-    rotate: -1080deg;        /* makes bob spin */
-    scale: 2;       /* makes bob bigger as it spins */
-}
+/* BASIC ----------------------------------------------------------------------------------------*/
 html, body {
     background-color:#ccd8e9 ;
     margin : 0;     /* removes default margin */
     padding: 0;      /* removes default padding */
 }
+p {
+    font-size: 2rem;
+    line-height: 1.6;
+    font-family: sans-serif;
+    color: #333;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.6;
+    font-family: sans-serif;
+    color: #333;
+}
+
+li {
+    transition: 1s;         /* sets all transition times to 1 second */
+    max-height: min-content;      /* sets the max height to the minimum content height */
+}
+
+li:hover {
+    scale: 1.1
+}
+/* BASIC ----------------------------------------------------------------------------------------*/
 
 
 
-/* SLIDER */
-
+/* SLIDER ----------------------------------------------------------------------------------------*/
 .container {
     margin : 0;      /* removes default margin */
     padding: 2rem 0;      /* keeps vertical padding and removes horizontal padding */
@@ -23,20 +38,22 @@ html, body {
 
 .slider-wrapper {
     position: relative;      /* relative to the parent container */
+    overflow: hidden;        /* hides the overflow of the images */
     margin: 0;      /* removes auto centering. Right now does nothing since margin has not been defined elsewhere. */
 }
 
 .slider {
-    animation: slide 2s infinite;       /* animation name, duration, infinite loop */
+    display: flex;      /* using flexbox */
+    transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+    will-change: transform;
     max-height: 500px;
     width: 100vw;
-    display: flex;      /* using flexbox */
     aspect-ratio: 16/9;      /* size */
-    overflow-x: hidden;        /* hide the images outside of the container */
     scroll-snap-type: x mandatory;       /* enable snap scrolling */
     scroll-behavior: smooth;         /* smooth animation */
     box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);        /* adding a shadow : x offset, y offset, blur, spread, color : hue, saturation, lightness, alpha/opacity */
     border-radius: 0.5rem;       /* rounded corners */
+    
 }
 
 .slider img {
@@ -63,23 +80,34 @@ html, body {
     border-radius: 50%;       /* making it round */
     background-color: #000;       /* black color */
     opacity: 0.5;       /* making it a bit transparent */
-    transition: opacity ease 250ms;       /* targets the opacity property, ease is the timing function, 250ms is the duration of the transition. this is important because we will change the opacity when the user hovers over the button. */
+    transition: ease 250ms;       /* targets the opacity property, ease is the timing function, 250ms is the duration of the transition. this is important because we will change the opacity when the user hovers over the button. */
 }
 
 .slider-nav a:hover {
     opacity: 1;      /* when the user hovers over the button, the opacity will change to 1 (with the aforementionned transition) */
+    scale:1.1;       /* makes the button bigger as you hover */
 }
 
 .slider-nav a.active {
     opacity: 1;
     background-color: #000000; /* or any color you want for highlight */
 }
-/* SLIDER */
+
+.slider-nav.dots-white a {
+    background-color: #fff;
+    opacity: 0.7;
+}
+
+.slider-nav.dots-white a.active,
+.slider-nav.dots-white a:hover {
+    background-color: #fff;
+    opacity: 1;
+}
+/* SLIDER ----------------------------------------------------------------------------------------*/
 
 
 
-/* NAVBAR */
-
+/* NAVBAR ----------------------------------------------------------------------------------------*/
 .navbar {
     display: flex;
     background: #222;
@@ -92,25 +120,162 @@ html, body {
     max-width: 200px;
     height: auto;
     margin-left: 2rem;
+    transition : 1s;
+}
+
+.navbar img:hover{
+    scale: 1.1;       /* makes the logo bigger as you hover */
 }
 
 .navbar ul {
-    margin-left: auto; /* pushes the list to the right except it doesn't */
+    margin-left: auto; /* pushes the list to the right */
     list-style: none;
     display: flex;
     justify-content: flex-end;
     gap: 3rem;
     padding: 0 3rem 0 0;
 }
-.navbar a {
+.navbar a, .navbar .dropbtn {
     color: #fff;
+    font-family: sans-serif;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 1vw;
     transition: color 0.2s;
+    padding: 10px 15px;
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .navbar a:hover {
-    color: #fff6c0;
+    color: #e4cf5c;
+    scale: 1.1;
 }
 
-/* NAVBAR */
+/* DROPDOWN ----------------------------------------------------------------------------------------*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.dropdown .content {
+    display: block; /* on gère la visibilité avec opacity/visibility */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s;
+    position: absolute;
+    background-color: #222;
+    min-width: unset;
+    width: max-content;
+    box-shadow: 2px 2px 5px #222;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none; /* évite les clics quand invisible */
+}
+.dropdown .content a {
+    font-size: 1vw;
+    padding: 0.1vw;
+}
+.dropdown:hover .content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+/* DROPDOWN ----------------------------------------------------------------------------------------*/
+
+/* NAVBAR ----------------------------------------------------------------------------------------*/
+
+
+
+/* INTERVIEW  ----------------------------------------------------------------------------------------*/
+.interviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    margin-left: 2rem;
+}
+
+
+
+.interview {
+    flex: 1 1 350px;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    max-width: 800px;
+    min-height: 300px;
+    background: #fff;
+    border-radius: 2rem;
+    margin: 5rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: 1s;         /* sets all transition times to 1 second */
+}
+
+.interview:hover{
+    scale: 1.15;       /* makes the interview bigger as you hover */
+}
+
+.interview-top {
+    display:flex;
+    align-items: center;
+    gap: 10vw;
+}
+
+.martine {
+    max-height: 200px;
+    min-height: 150px;
+    min-width: 150px;
+    max-width: 200px;         /* ajuste la taille de l'image si besoin */
+    height: auto;
+}
+/* INTERVIEW ----------------------------------------------------------------------------------------*/
+
+
+
+/* BOB ET MARTINE ----------------------------------------------------------------------------------------*/
+.bob {
+    transition: 1s;         /* sets all transition times to 1 second */
+    padding-left: 0%;        /* adding space on the left side */
+}
+.bob:hover{
+    rotate: -1080deg;        /* makes bob spin */
+    scale: 2;       /* makes bob bigger as it spins */
+}
+.martine {
+    transition: 1s;         /* sets all transition times to 1 second */
+}
+.martine:hover{
+    scale: 1.2;       /* makes martine bigger as you hover */
+}
+/* BOB ET MARTINE ----------------------------------------------------------------------------------------*/
+
+
+
+/* FOOTER ----------------------------------------------------------------------------------------*/
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    z-index: 100;
+}
+
+.footer-legal {
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+/* FOOTER ----------------------------------------------------------------------------------------*/
+
